@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savant Analytics Academy — v1 Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --ink-muted: #5a5750;
+    --ink-faint: #9a9690;
+    --paper: #faf8f4;
+    --paper-warm: #f3f0ea;
+    --paper-mid: #e8e4dc;
+    --accent: #1a6b4a;
+    --accent-light: #e4f0ea;
+    --accent-mid: #2d8f63;
+    --amber: #c47c1a;
+    --amber-light: #fdf3e0;
+    --purple: #4e3b8c;
+    --purple-light: #eeebf8;
+    --blue: #1a4f8c;
+    --blue-light: #e5edf8;
+    --rule: rgba(15,14,12,0.1);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    height: 58px;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .brand-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-mid);
+  }
+
+  .brand-text {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgba(250,248,244,0.85);
+  }
+
+  /* tab nav */
+  nav {
+    display: flex;
+    gap: 0;
+  }
+
+  nav button {
+    background: none;
+    border: none;
+    color: rgba(250,248,244,0.5);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    padding: 0 16px;
+    height: 58px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.18s, border-color 0.18s;
+    white-space: nowrap;
+  }
+
+  nav button:hover { color: rgba(250,248,244,0.85); }
+
+  nav button.active {
+    color: #fff;
+    border-bottom-color: var(--accent-mid);
+    font-weight: 500;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,143,99,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: 30%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(78,59,140,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent-mid);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    max-width: 700px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-mid), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .author-info { display: flex; flex-direction: column; gap: 1px; }
+
+  .author-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(250,248,244,0.9);
+  }
+
+  .author-role {
+    font-size: 12px;
+    color: rgba(250,248,244,0.45);
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(255,255,255,0.12);
+  }
+
+  .hero-tag {
+    font-size: 12px;
+    color: rgba(250,248,244,0.45);
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  /* Tab panels */
+  .tab-panel { display: none; animation: fadeIn 0.25s ease; }
+  .tab-panel.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Section heading */
+  .section-heading {
+    margin-bottom: 2rem;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.4rem;
+  }
+
+  .section-heading h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .section-intro {
+    font-size: 15px;
+    color: var(--ink-muted);
+    max-width: 680px;
+    margin-top: 0.75rem;
+    line-height: 1.7;
+  }
+
+  /* ── TAB 1: AUDIENCE ── */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    .persona-grid { grid-template-columns: 1fr; }
+    nav button { padding: 0 10px; font-size: 12px; }
+  }
+
+  .persona-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .persona-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .persona-card.analyst::before { background: var(--accent); }
+  .persona-card.admin::before { background: var(--purple); }
+  .persona-card.accountant::before { background: var(--amber); }
+
+  .priority-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .priority-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 99px;
+  }
+
+  .analyst .priority-badge { background: var(--accent-light); color: var(--accent); }
+  .admin .priority-badge { background: var(--purple-light); color: var(--purple); }
+  .accountant .priority-badge { background: var(--amber-light); color: var(--amber); }
+
+  .persona-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .analyst .persona-icon { background: var(--accent-light); }
+  .admin .persona-icon { background: var(--purple-light); }
+  .accountant .persona-icon { background: var(--amber-light); }
+
+  .persona-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .persona-goal {
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .rationale-box {
+    background: var(--paper-warm);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 0.9rem;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    border-left: 2px solid var(--paper-mid);
+  }
+
+  .rationale-box strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .tag-note {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tag-note-icon { font-size: 20px; flex-shrink: 0; }
+
+  .tag-note p {
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  .tag-pills {
+    display: inline-flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+
+  .pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 99px;
+  }
+  .pill.analyst { background: var(--accent-light); color: var(--accent); }
+  .pill.admin { background: var(--purple-light); color: var(--purple); }
+  .pill.accountant { background: var(--amber-light); color: var(--amber); }
+  .pill.dev { background: var(--blue-light); color: var(--blue); }
+
+  /* ── TAB 2: TRACKS ── */
+  .tracks-intro {
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-mid);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .track-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .track-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 1rem 1.3rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+
+  .track-header:hover { background: var(--paper-warm); }
+
+  .track-num {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-faint);
+    min-width: 22px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .track-name {
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+    color: var(--ink);
+  }
+
+  .track-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+
+  .track-tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 99px;
+    letter-spacing: 0.03em;
+  }
+
+  .track-tag.all { background: var(--paper-warm); color: var(--ink-muted); border: 1px solid var(--paper-mid); }
+  .track-tag.analyst { background: var(--accent-light); color: var(--accent); }
+  .track-tag.admin { background: var(--purple-light); color: var(--purple); }
+  .track-tag.accountant { background: var(--amber-light); color: var(--amber); }
+
+  .track-chevron {
+    font-size: 18px;
+    color: var(--ink-faint);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .track-card.open .track-chevron { transform: rotate(180deg); }
+
+  .track-body {
+    display: none;
+    padding: 0 1.3rem 1.3rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .track-card.open .track-body { display: block; }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+    margin: 1rem 0;
+  }
+
+  .module-tile {
+    background: var(--paper-warm);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 0.9rem;
+  }
+
+  .module-num { font-size: 10px; color: var(--ink-faint); font-weight: 600; margin-bottom: 4px; }
+  .module-name { font-size: 13px; font-weight: 500; line-height: 1.4; color: var(--ink); }
+  .module-meta { font-size: 11.5px; color: var(--ink-faint); margin-top: 5px; }
+
+  .track-rationale {
+    background: var(--paper);
+    border-left: 3px solid var(--paper-mid);
+    padding: 0.75rem 1rem;
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-top: 0.75rem;
+  }
+
+  .track-rationale strong { color: var(--ink); font-weight: 500; }
+
+  .format-strip {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .format-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-mid);
+    border-radius: 99px;
+    padding: 4px 11px;
+  }
+
+  /* ── TAB 3: EXCLUSIONS ── */
+  .out-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 640px) { .out-grid { grid-template-columns: 1fr; } }
+
+  .out-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem;
+  }
+
+  .out-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.6rem;
+  }
+
+  .out-x {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffeaea;
+    color: #c0392b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .out-title {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .out-reason {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  .v2-note {
+    background: var(--accent-light);
+    border: 1px solid rgba(26,107,74,0.15);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .v2-note-icon { font-size: 20px; flex-shrink: 0; }
+
+  .v2-note p {
+    font-size: 13.5px;
+    color: var(--accent);
+    line-height: 1.65;
+  }
+
+  /* ── TAB 4: MEASUREMENT ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 640px) { .metrics-grid { grid-template-columns: 1fr; } }
+
+  .metric-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 1.3rem;
+  }
+
+  .metric-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .metric-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .metric-icon.green { background: var(--accent-light); }
+  .metric-icon.purple { background: var(--purple-light); }
+  .metric-icon.amber { background: var(--amber-light); }
+  .metric-icon.blue { background: var(--blue-light); }
+
+  .metric-title { font-size: 14px; font-weight: 500; }
+
+  .metric-list { list-style: none; }
+
+  .metric-list li {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .metric-list li:last-child { border-bottom: none; }
+
+  .metric-list li::before {
+    content: '–';
+    color: var(--ink-faint);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .platform-box {
+    background: var(--paper-warm);
+    border: 1px solid var(--paper-mid);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .platform-box-icon { font-size: 20px; flex-shrink: 0; }
+  .platform-box p { font-size: 13.5px; color: var(--ink-muted); line-height: 1.65; }
+
+  /* ── TAB 5: ROADMAP ── */
+  .roadmap-phases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 700px) { .roadmap-phases { grid-template-columns: 1fr 1fr; } }
+
+  .phase {
+    padding: 1.2rem 1.2rem;
+    border-right: 1px solid var(--rule);
+  }
+
+  .phase:last-child { border-right: none; }
+
+  .phase-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+
+  .phase-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .phase-items {
+    list-style: none;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    line-height: 1.8;
+  }
+
+  .phase-items li::before { content: '· '; color: var(--ink-faint); }
+
+  .phase-1 { background: var(--ink); }
+  .phase-1 .phase-label, .phase-1 .phase-items { color: rgba(250,248,244,0.45); }
+  .phase-1 .phase-name { color: rgba(250,248,244,0.9); }
+  .phase-1 .phase-items li::before { color: rgba(250,248,244,0.25); }
+
+  /* existing bootcamp comparison */
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 640px) { .comparison-row { grid-template-columns: 1fr; } }
+
+  .compare-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem;
+  }
+
+  .compare-card.now::before { display: none; }
+
+  .compare-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .compare-list { list-style: none; }
+
+  .compare-list li {
+    font-size: 13px;
+    color: var(--ink-muted);
+    padding: 4px 0;
+    display: flex;
+    gap: 8px;
+    line-height: 1.55;
+  }
+
+  .compare-list li .icon { flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(250,248,244,0.35);
+    text-align: center;
+    padding: 1.75rem;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  footer strong { color: rgba(250,248,244,0.6); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER / NAV -->
+<header>
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="brand-dot"></div>
+      <span class="brand-text">Savant Analytics Academy — v1 Proposal</span>
+    </div>
+    <nav id="tab-nav">
+      <button class="active" onclick="switchTab('audience', this)">Audience</button>
+      <button onclick="switchTab('tracks', this)">Tracks</button>
+      <button onclick="switchTab('exclusions', this)">What's Out</button>
+      <button onclick="switchTab('measurement', this)">Measurement</button>
+      <button onclick="switchTab('roadmap', this)">Roadmap</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Design Proposal · v1</div>
+    <h1>Savant Analytics<br><em>Academy</em></h1>
+    <div class="hero-meta">
+      <div class="hero-author">
+        <div class="author-avatar">DS</div>
+        <div class="author-info">
+          <span class="author-name">Dipender Kumar Sharma</span>
+          <span class="author-role">Senior Technical Writer</span>
+        </div>
+      </div>
+      <div class="hero-divider"></div>
+      <span class="hero-tag">Savant Labs · 2025</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ── TAB: AUDIENCE ── -->
+  <div class="tab-panel active" id="tab-audience">
+    <div class="section-heading">
+      <div class="section-label">Section 01</div>
+      <h2>Who v1 is for</h2>
+      <p class="section-intro">Three distinct user types. Different goals, different relationships with the product, different prioritization logic. Here's how to sequence investment across all three in v1.</p>
+    </div>
+
+    <div class="persona-grid">
+      <!-- Analyst -->
+      <div class="persona-card analyst">
+        <div class="priority-row">
+          <div class="persona-icon analyst">📊</div>
+          <span class="priority-badge">Priority 1</span>
+        </div>
+        <div class="persona-title">Analyst</div>
+        <p class="persona-goal">Builds data pipelines, runs transformations, owns outputs. The power user whose depth of mastery directly determines team ROI and Savant's expansion revenue.</p>
+        <div class="rationale-box">
+          <strong>Why first:</strong> Deepest engagement surface in the product. When analysts win, they pull in more seats and become internal champions. Build for them first and build deep — this is where learning translates directly into retention.
+        </div>
+      </div>
+
+      <!-- Admin -->
+      <div class="persona-card admin">
+        <div class="priority-row">
+          <div class="persona-icon admin">⚙️</div>
+          <span class="priority-badge">Priority 2</span>
+        </div>
+        <div class="persona-title">Admin / IT</div>
+        <p class="persona-goal">Connects data sources, manages permissions, owns the deployment. A confused or stuck admin is a blocked team — they unlock everyone else's ability to learn.</p>
+        <div class="rationale-box">
+          <strong>Why second:</strong> One admin enables 5–20 analysts. Onboarding content here pays compounding dividends. Needs precision over depth — the goal is "connected and stable," not mastery of every setting.
+        </div>
+      </div>
+
+      <!-- Accountant -->
+      <div class="persona-card accountant">
+        <div class="priority-row">
+          <div class="persona-icon accountant">🧾</div>
+          <span class="priority-badge">Priority 3</span>
+        </div>
+        <div class="persona-title">Accountant</div>
+        <p class="persona-goal">Consumes reports, validates outputs, closes the books. Narrower feature surface — needs confidence and trust in the data, not configuration depth.</p>
+        <div class="rationale-box">
+          <strong>Why third:</strong> Smaller learning surface but high emotional stakes around accuracy. v1 covers their core consumer workflow well. Advanced content waits for v2, informed by actual usage data.
+        </div>
+      </div>
+    </div>
+
+    <div class="tag-note">
+      <div class="tag-note-icon">🏷️</div>
+      <p>
+        Every course carries a role tag so learners immediately see what's built for them. Tags appear as colored pills in the catalog and power the browse filter — a learner should never have to guess whether content applies to their job.
+        <br>
+        <div class="tag-pills">
+          <span class="pill analyst">Analyst</span>
+          <span class="pill admin">Admin</span>
+          <span class="pill accountant">Accountant</span>
+          <span class="pill dev">Developer</span>
+        </div>
+      </p>
+    </div>
+  </div>
+
+  <!-- ── TAB: TRACKS ── -->
+  <div class="tab-panel" id="tab-tracks">
+    <div class="section-heading">
+      <div class="section-label">Section 02</div>
+      <h2>Learning tracks</h2>
+      <p class="section-intro">Five tracks, sequenced by priority. Each module follows the same repeatable format: a 4–5 min concept video → Walnut-powered hands-on demo → short quiz → certification exam at track close.</p>
+    </div>
+
+    <div class="tracks-intro">
+      <span>📋</span>
+      <span>Consistent module structure reduces learner cognitive load and production overhead. Learners know what to expect; the team knows what to build. The Walnut interactive demos are non-negotiable for procedural workflows — you cannot build confidence in data cleaning by watching alone.</span>
+    </div>
+
+    <!-- Track 01 -->
+    <div class="track-card open" id="tr1">
+      <div class="track-header" onclick="toggleTrack('tr1')">
+        <span class="track-num">01</span>
+        <span class="track-name">Savant Foundations — Getting Started</span>
+        <div class="track-tags"><span class="track-tag all">All roles</span></div>
+        <span class="track-chevron">▾</span>
+      </div>
+      <div class="track-body">
+        <div class="modules-grid">
+          <div class="module-tile"><div class="module-num">M1</div><div class="module-name">What is Savant and how it fits your workflow</div><div class="module-meta">5 min · All roles</div></div>
+          <div class="module-tile"><div class="module-num">M2</div><div class="module-name">Navigating the interface</div><div class="module-meta">4 min · All roles</div></div>
+          <div class="module-tile"><div class="module-num">M3</div><div class="module-name">Your first data import</div><div class="module-meta">5 min · Analyst · Admin</div></div>
+          <div class="module-tile"><div class="module-num">M4</div><div class="module-name">Understanding workspaces and projects</div><div class="module-meta">4 min · All roles</div></div>
+          <div class="module-tile"><div class="module-num">M5</div><div class="module-name">Certification exam</div><div class="module-meta">10 questions · Foundations badge</div></div>
+        </div>
+        <div class="track-rationale">
+          <strong>Why first:</strong> The mandatory on-ramp. Every user hits this regardless of role — it establishes a shared mental model before tracks diverge. Keeping it short (under 25 min total) respects time and reduces drop-off at the hardest moment: the very beginning.
+        </div>
+        <div class="format-strip">
+          <div class="format-chip">▶ 4–5 min video per module</div>
+          <div class="format-chip">🖱 Walnut interactive demo</div>
+          <div class="format-chip">✓ Short quiz</div>
+          <div class="format-chip">🎓 Foundations badge</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track 02 -->
+    <div class="track-card" id="tr2">
+      <div class="track-header" onclick="toggleTrack('tr2')">
+        <span class="track-num">02</span>
+        <span class="track-name">Analyst Core — Data Cleaning & Transformation</span>
+        <div class="track-tags"><span class="track-tag analyst">Analyst</span></div>
+        <span class="track-chevron">▾</span>
+      </div>
+      <div class="track-body">
+        <div class="modules-grid">
+          <div class="module-tile"><div class="module-num">M1</div><div class="module-name">Connecting your first data source</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M2</div><div class="module-name">Core transformation tools</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M3</div><div class="module-name">Cleaning messy data: common scenarios</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M4</div><div class="module-name">Building and scheduling automations</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M5</div><div class="module-name">Sharing outputs and collaboration</div><div class="module-meta">4 min</div></div>
+          <div class="module-tile"><div class="module-num">M6</div><div class="module-name">Certification exam</div><div class="module-meta">15 questions · Analyst Core badge</div></div>
+        </div>
+        <div class="track-rationale">
+          <strong>Why second:</strong> The highest-value learning surface. Analysts represent the deepest engagement with the product — this track is where competence translates directly to retention and expansion. Each module mirrors a real workflow scenario, not a feature list. Walnut demos here are non-negotiable.
+        </div>
+        <div class="format-strip">
+          <div class="format-chip">▶ 5 min concept video</div>
+          <div class="format-chip">🖱 Walnut scenario walkthrough</div>
+          <div class="format-chip">✓ Scenario-based quiz</div>
+          <div class="format-chip">🎓 Analyst Core badge</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track 03 -->
+    <div class="track-card" id="tr3">
+      <div class="track-header" onclick="toggleTrack('tr3')">
+        <span class="track-num">03</span>
+        <span class="track-name">Admin Essentials — Setup, Connections & Permissions</span>
+        <div class="track-tags"><span class="track-tag admin">Admin</span></div>
+        <span class="track-chevron">▾</span>
+      </div>
+      <div class="track-body">
+        <div class="modules-grid">
+          <div class="module-tile"><div class="module-num">M1</div><div class="module-name">Account setup and org structure</div><div class="module-meta">4 min</div></div>
+          <div class="module-tile"><div class="module-num">M2</div><div class="module-name">Connecting data sources and integrations</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M3</div><div class="module-name">User management and permissions</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M4</div><div class="module-name">Security, SSO, and compliance basics</div><div class="module-meta">4 min</div></div>
+          <div class="module-tile"><div class="module-num">M5</div><div class="module-name">Troubleshooting common setup issues</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M6</div><div class="module-name">Certification exam</div><div class="module-meta">12 questions · Admin Essentials badge</div></div>
+        </div>
+        <div class="track-rationale">
+          <strong>Design choice:</strong> Admin content is precision-first, not depth-first. A confused admin blocks an entire team, so these modules target the critical path only: get connected, get secure, get out of the way. Format leans on step-by-step Walnut demos since configuration tasks are procedural — video alone is insufficient.
+        </div>
+        <div class="format-strip">
+          <div class="format-chip">▶ 4–5 min video</div>
+          <div class="format-chip">🖱 Walnut step-by-step demo</div>
+          <div class="format-chip">✓ Config verification quiz</div>
+          <div class="format-chip">🎓 Admin Essentials badge</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track 04 -->
+    <div class="track-card" id="tr4">
+      <div class="track-header" onclick="toggleTrack('tr4')">
+        <span class="track-num">04</span>
+        <span class="track-name">Accountant Essentials — Reading, Validating & Trusting Outputs</span>
+        <div class="track-tags"><span class="track-tag accountant">Accountant</span></div>
+        <span class="track-chevron">▾</span>
+      </div>
+      <div class="track-body">
+        <div class="modules-grid">
+          <div class="module-tile"><div class="module-num">M1</div><div class="module-name">How Savant fits your close process</div><div class="module-meta">4 min</div></div>
+          <div class="module-tile"><div class="module-num">M2</div><div class="module-name">Reading and navigating reports</div><div class="module-meta">4 min</div></div>
+          <div class="module-tile"><div class="module-num">M3</div><div class="module-name">Validating data: what to check and how</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M4</div><div class="module-name">Exporting and sharing for review</div><div class="module-meta">4 min</div></div>
+          <div class="module-tile"><div class="module-num">M5</div><div class="module-name">Certification exam</div><div class="module-meta">10 questions · Accountant badge</div></div>
+        </div>
+        <div class="track-rationale">
+          <strong>Design choice:</strong> Accountants have the narrowest feature surface but the highest accuracy anxiety. This track is about building trust, not teaching configuration. Tone is practical and close-process-oriented. Shorter track length reflects the narrower scope — not lower importance.
+        </div>
+        <div class="format-strip">
+          <div class="format-chip">▶ 4–5 min video</div>
+          <div class="format-chip">🖱 Read-only Walnut walkthrough</div>
+          <div class="format-chip">✓ Scenario quiz</div>
+          <div class="format-chip">🎓 Accountant badge</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track 05 -->
+    <div class="track-card" id="tr5">
+      <div class="track-header" onclick="toggleTrack('tr5')">
+        <span class="track-num">05</span>
+        <span class="track-name">Analyst Advanced — Automation, Insights & Power Features</span>
+        <div class="track-tags"><span class="track-tag analyst">Analyst</span></div>
+        <span class="track-chevron">▾</span>
+      </div>
+      <div class="track-body">
+        <div class="modules-grid">
+          <div class="module-tile"><div class="module-num">M1</div><div class="module-name">Advanced transformation logic</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M2</div><div class="module-name">Building complex multi-source pipelines</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M3</div><div class="module-name">Error handling and data quality checks</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M4</div><div class="module-name">Collaboration and template sharing</div><div class="module-meta">4 min</div></div>
+          <div class="module-tile"><div class="module-num">M5</div><div class="module-name">Real-world scenario: Month-end close</div><div class="module-meta">5 min</div></div>
+          <div class="module-tile"><div class="module-num">M6</div><div class="module-name">Certification exam</div><div class="module-meta">15 questions · Savant Expert badge</div></div>
+        </div>
+        <div class="track-rationale">
+          <strong>Why last:</strong> This track exists to retain and deepen analysts who've completed Core. The real-world scenario module is deliberately concrete — not a feature tour. A learner who finishes this becomes a natural internal champion who pulls in colleagues.
+        </div>
+        <div class="format-strip">
+          <div class="format-chip">▶ 5 min video</div>
+          <div class="format-chip">🖱 Walnut scenario (complex)</div>
+          <div class="format-chip">✓ Applied scenario quiz</div>
+          <div class="format-chip">🎓 Savant Expert badge</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB: EXCLUSIONS ── -->
+  <div class="tab-panel" id="tab-exclusions">
+    <div class="section-heading">
+      <div class="section-label">Section 03</div>
+      <h2>What's explicitly out of v1</h2>
+      <p class="section-intro">Building everything at once is not an option. The prioritization reasoning is as important as what's included. Every exclusion below is a deliberate call, not an oversight.</p>
+    </div>
+
+    <div class="out-grid">
+      <div class="out-card">
+        <div class="out-card-header">
+          <div class="out-x">✕</div>
+          <div class="out-title">Developer / API track</div>
+        </div>
+        <p class="out-reason">A developer building on Savant's API is a different buyer motion from an internal finance team. v1 serves adoption, not integration. This content likely serves a tiny v1 user segment — defer to v2 when there's actual signal.</p>
+      </div>
+      <div class="out-card">
+        <div class="out-card-header">
+          <div class="out-x">✕</div>
+          <div class="out-title">Live webinars and cohort learning</div>
+        </div>
+        <p class="out-reason">Synchronous formats require scheduling overhead, hosting infrastructure, and facilitator time. Async-first scales to any account size and timezone without coordination. Build the library first; layer live sessions in v2 where the format earns its cost.</p>
+      </div>
+      <div class="out-card">
+        <div class="out-card-header">
+          <div class="out-x">✕</div>
+          <div class="out-title">Community forum integration</div>
+        </div>
+        <p class="out-reason">Savant already has a community hub (Circle.so bootcamp). The Academy in v1 links out to it — it does not replicate or replace it. Building a second community surface splits engagement and creates maintenance overhead.</p>
+      </div>
+      <div class="out-card">
+        <div class="out-card-header">
+          <div class="out-x">✕</div>
+          <div class="out-title">Custom learning paths per account</div>
+        </div>
+        <p class="out-reason">Account-level customization requires LMS admin tooling, CS coordination, and configuration complexity. Role-based tags accomplish 80% of the personalization value with zero overhead. Custom paths are a v2 enterprise feature.</p>
+      </div>
+      <div class="out-card">
+        <div class="out-card-header">
+          <div class="out-x">✕</div>
+          <div class="out-title">Localization (non-English content)</div>
+        </div>
+        <p class="out-reason">Translating video, quizzes, and Walnut demos is expensive and delays launch significantly. English fluency and content quality comes first. Localization decisions should be data-driven — identify which regions actually need it before investing.</p>
+      </div>
+      <div class="out-card">
+        <div class="out-card-header">
+          <div class="out-x">✕</div>
+          <div class="out-title">In-app learning nudges / product tours</div>
+        </div>
+        <p class="out-reason">In-product guidance is a product design function, not an Academy function. Conflating them creates unclear ownership. The Academy is the structured learning destination; the product can contextually link to it without the Academy owning in-app UX.</p>
+      </div>
+    </div>
+
+    <div class="v2-note">
+      <div class="v2-note-icon">→</div>
+      <p>All six exclusions above are v2 candidates — but only if usage data and customer signal justify them. The developer track gets reconsidered first if accounts show integration-led adoption. Live sessions get added once drop-off analysis shows where async content isn't sufficient.</p>
+    </div>
+  </div>
+
+  <!-- ── TAB: MEASUREMENT ── -->
+  <div class="tab-panel" id="tab-measurement">
+    <div class="section-heading">
+      <div class="section-label">Section 04</div>
+      <h2>Measuring success</h2>
+      <p class="section-intro">Four metric categories. The content quality metrics matter to the education team. The product adoption and business signal metrics are what move CS, Sales, and the exec team — bring both into a shared dashboard from day one.</p>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-card-header">
+          <div class="metric-icon green">📈</div>
+          <span class="metric-title">Activation & engagement</span>
+        </div>
+        <ul class="metric-list">
+          <li>% of new users who start at least 1 module within 14 days of signup</li>
+          <li>Track completion rate by role (target: >60% of starters finish)</li>
+          <li>Median time-to-first-certification per cohort</li>
+          <li>Module drop-off rate — flag any module above 30% abandonment</li>
+        </ul>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-card-header">
+          <div class="metric-icon blue">🔗</div>
+          <span class="metric-title">Product adoption impact</span>
+        </div>
+        <ul class="metric-list">
+          <li>Feature adoption rate: Academy completers vs. non-completers</li>
+          <li>Time-to-first-meaningful-output by cohort (e.g. first pipeline run)</li>
+          <li>Support ticket volume: Academy users vs. non-Academy users</li>
+          <li>Retention at 30/60/90 days, split by Academy engagement tier</li>
+        </ul>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-card-header">
+          <div class="metric-icon amber">🎓</div>
+          <span class="metric-title">Certification & content quality</span>
+        </div>
+        <ul class="metric-list">
+          <li>Certifications issued per month and month-over-month trend</li>
+          <li>Exam pass rate per track — flag anything below 70%</li>
+          <li>Post-module satisfaction score (1–5 star, per module)</li>
+          <li>Quiz item analysis: questions with >60% wrong-answer rate need revision</li>
+        </ul>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-card-header">
+          <div class="metric-icon purple">💼</div>
+          <span class="metric-title">Business & NPS signal</span>
+        </div>
+        <ul class="metric-list">
+          <li>NPS delta: certified users vs. non-certified at same account tenure</li>
+          <li>Expansion revenue correlation — seats added in high-Academy-engagement accounts</li>
+          <li>% of CS escalations where Academy gap is the identified root cause</li>
+          <li>Champion identification: certified users who refer teammates</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="platform-box">
+      <div class="platform-box-icon">🔧</div>
+      <p>Built on <strong>MapleLMS</strong> (or equivalent), all four metric categories are reportable natively. The critical instrumentation step: connect LMS completion data to product analytics via user email or ID. This unlocks the adoption-impact metrics — the ones that actually move stakeholders beyond the education team. Set up the shared dashboard before launch, not after.</p>
+    </div>
+  </div>
+
+  <!-- ── TAB: ROADMAP ── -->
+  <div class="tab-panel" id="tab-roadmap">
+    <div class="section-heading">
+      <div class="section-label">Section 05</div>
+      <h2>Build sequence & roadmap</h2>
+      <p class="section-intro">A 14-week build to full v1 launch, with a clear boundary between what ships and what waits for data before it gets prioritized.</p>
+    </div>
+
+    <div class="roadmap-phases">
+      <div class="phase phase-1">
+        <div class="phase-label">Weeks 1–4</div>
+        <div class="phase-name">Foundation</div>
+        <ul class="phase-items">
+          <li>Platform setup (MapleLMS)</li>
+          <li>Track 1 — Foundations</li>
+          <li>Track 3 — Admin Essentials</li>
+          <li>Role tagging system</li>
+          <li>LMS ↔ product ID link</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-label">Weeks 5–9</div>
+        <div class="phase-name">Core tracks</div>
+        <ul class="phase-items">
+          <li>Track 2 — Analyst Core</li>
+          <li>Track 4 — Accountant</li>
+          <li>Walnut demos for all tracks</li>
+          <li>First certification exam live</li>
+          <li>Metrics dashboard v1</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-label">Weeks 10–14</div>
+        <div class="phase-name">Advanced + iteration</div>
+        <ul class="phase-items">
+          <li>Track 5 — Analyst Advanced</li>
+          <li>Drop-off analysis review</li>
+          <li>First content revision cycle</li>
+          <li>Soft launch to pilot accounts</li>
+          <li>Broad rollout</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-label">Post-launch</div>
+        <div class="phase-name">v2 signals</div>
+        <ul class="phase-items">
+          <li>Developer track (if signal)</li>
+          <li>Live webinar layer</li>
+          <li>Custom account paths</li>
+          <li>Localization decisions</li>
+          <li>Community integration</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Before vs After -->
+    <div class="section-heading" style="margin-top: 2.5rem;">
+      <div class="section-label">Context</div>
+      <h2>Before & after</h2>
+      <p class="section-intro">How the Academy compares to what exists today in the Savant Bootcamp community hub.</p>
+    </div>
+
+    <div class="comparison-row">
+      <div class="compare-card">
+        <div class="compare-title">Current Bootcamp (Circle.so)</div>
+        <ul class="compare-list">
+          <li><span class="icon">·</span>Community-hosted, discussion-board format</li>
+          <li><span class="icon">·</span>Hands-on lessons in an unstructured feed</li>
+          <li><span class="icon">·</span>No role-based filtering or tagging</li>
+          <li><span class="icon">·</span>No formal certification or badges</li>
+          <li><span class="icon">·</span>No completion tracking or analytics</li>
+          <li><span class="icon">·</span>No sequential learning path</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <div class="compare-title">Analytics Academy v1</div>
+        <ul class="compare-list">
+          <li><span class="icon">·</span>Structured LMS with 5 role-specific tracks</li>
+          <li><span class="icon">·</span>Video + Walnut demo + quiz per module</li>
+          <li><span class="icon">·</span>Role tags on every course (Analyst / Admin / Accountant / Dev)</li>
+          <li><span class="icon">·</span>Certification exams and shareable badges</li>
+          <li><span class="icon">·</span>Full completion and engagement analytics</li>
+          <li><span class="icon">·</span>Clear prerequisite sequencing per role</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Prepared by <strong>Dipender Kumar Sharma</strong> · Senior Technical Writer · Savant Labs 2025
+</footer>
+
+<script>
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function toggleTrack(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+</script>
+</body>
+</html>
