@@ -803,6 +803,85 @@
   }
 
   footer strong { color: rgba(250,248,244,0.6); font-weight: 500; }
+
+  /* ── AUTHOR VOICE ── */
+  .voice-section {
+    background: var(--paper-warm);
+    border-top: 1px solid var(--paper-mid);
+    border-bottom: 1px solid var(--paper-mid);
+    padding: 2.5rem 2rem;
+  }
+
+  .voice-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 680px) {
+    .voice-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  .voice-left {}
+
+  .voice-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+  }
+
+  .voice-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+
+  .voice-title-text {
+    font-size: 12px;
+    color: var(--ink-faint);
+    line-height: 1.5;
+  }
+
+  .voice-divider {
+    width: 32px;
+    height: 2px;
+    background: var(--accent-mid);
+    margin: 1rem 0;
+    border-radius: 1px;
+  }
+
+  .voice-quote {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    position: relative;
+    padding-left: 1.2rem;
+    border-left: 2px solid var(--paper-mid);
+  }
+
+  .voice-body {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+
+  .voice-body p + p { margin-top: 0.9rem; }
+
+  .voice-body strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
 </style>
 </head>
 <body>
@@ -834,11 +913,31 @@
         <div class="author-avatar">DS</div>
         <div class="author-info">
           <span class="author-name">Dipender Kumar Sharma</span>
-          <span class="author-role">Senior Technical Writer</span>
+          <!-- <span class="author-role">Senior Technical Writer</span> -->
         </div>
       </div>
       <div class="hero-divider"></div>
-      <span class="hero-tag">Savant Labs · 2025</span>
+      <span class="hero-tag">Senior Technical Writer</span>
+    </div>
+  </div>
+</div>
+
+<!-- AUTHOR VOICE SECTION -->
+<div class="voice-section">
+  <div class="voice-inner">
+    <div class="voice-left">
+      <div class="voice-label">A note from</div>
+      <div class="voice-name">Dipender Kumar Sharma</div>
+      <div class="voice-title-text">Senior Technical Writer · 8 years</div>
+      <div class="voice-divider"></div>
+      <div class="voice-quote">
+        I've never met a user who failed because the product was bad. Most of the time, nobody showed them how to trust it.
+      </div>
+    </div>
+    <div class="voice-body">
+      <p>10+ years of technical writing has taught me one thing above everything else: documentation that nobody reads has already failed. The words might be perfect, the structure might be clean — but if a real person sat down, got confused, and quietly gave up, the content didn't do its job.</p>
+      <p>That's what I kept thinking about while designing this Academy. Not "what features does Savant have?" but "what does an analyst actually need to know before Monday's close?" or "what's the one thing that makes an accountant trust a number they didn't calculate themselves?" Every track in this proposal started from that question. The role tags, the short modules, the hands-on Walnut demos — none of those are format choices for their own sake. They're answers to what I've seen real users need when they're learning something new under time pressure.</p>
+      <p>I've built learning hubs from scratch before using tools like <strong>MapleLMS</strong>, so I know what the first week of production actually looks like — and what tends to quietly fall apart at scale if you don't plan for it early. This proposal reflects that experience. It's not just a structure; it's a sequence of bets I'm confident enough to put my name on.</p>
     </div>
   </div>
 </div>
@@ -851,7 +950,7 @@
     <div class="section-heading">
       <div class="section-label">Section 01</div>
       <h2>Who v1 is for</h2>
-      <p class="section-intro">Three distinct user types. Different goals, different relationships with the product, different prioritization logic. Here's how to sequence investment across all three in v1.</p>
+      <p class="section-intro">Savant has three very different kinds of users, and they need almost completely different things from a learning program. Getting this prioritization right is the most important decision in the whole proposal — build in the wrong order and you'll spend months creating content that the right people never find.</p>
     </div>
 
     <div class="persona-grid">
@@ -862,9 +961,9 @@
           <span class="priority-badge">Priority 1</span>
         </div>
         <div class="persona-title">Analyst</div>
-        <p class="persona-goal">Builds data pipelines, runs transformations, owns outputs. The power user whose depth of mastery directly determines team ROI and Savant's expansion revenue.</p>
+        <p class="persona-goal">The person doing the actual work — connecting sources, cleaning data, building pipelines, producing outputs. When analysts feel capable, they become the product's biggest internal advocates.</p>
         <div class="rationale-box">
-          <strong>Why first:</strong> Deepest engagement surface in the product. When analysts win, they pull in more seats and become internal champions. Build for them first and build deep — this is where learning translates directly into retention.
+          <strong>Why first:</strong> Analysts have the deepest relationship with the product. When they hit a wall, they leave — or they pull the whole team with them. When they succeed, they tell everyone. That's where I'd put the most energy in v1.
         </div>
       </div>
 
@@ -875,9 +974,9 @@
           <span class="priority-badge">Priority 2</span>
         </div>
         <div class="persona-title">Admin / IT</div>
-        <p class="persona-goal">Connects data sources, manages permissions, owns the deployment. A confused or stuck admin is a blocked team — they unlock everyone else's ability to learn.</p>
+        <p class="persona-goal">Sets up the workspace, connects the data sources, manages who has access to what. Nobody thinks about the admin until something breaks — but a confused admin quietly blocks the entire team from getting started.</p>
         <div class="rationale-box">
-          <strong>Why second:</strong> One admin enables 5–20 analysts. Onboarding content here pays compounding dividends. Needs precision over depth — the goal is "connected and stable," not mastery of every setting.
+          <strong>Why second:</strong> One admin unblocking a team of ten is a better use of content effort than ten individual help articles. I'd keep this track tight and practical — the goal is getting them to "everything is connected and working" as fast as possible.
         </div>
       </div>
 
@@ -888,9 +987,9 @@
           <span class="priority-badge">Priority 3</span>
         </div>
         <div class="persona-title">Accountant</div>
-        <p class="persona-goal">Consumes reports, validates outputs, closes the books. Narrower feature surface — needs confidence and trust in the data, not configuration depth.</p>
+        <p class="persona-goal">Reviews reports, validates numbers, signs off on outputs. Their feature surface is narrower than an analyst's, but their anxiety about accuracy is higher. They need to trust what they're looking at before they'll use it.</p>
         <div class="rationale-box">
-          <strong>Why third:</strong> Smaller learning surface but high emotional stakes around accuracy. v1 covers their core consumer workflow well. Advanced content waits for v2, informed by actual usage data.
+          <strong>Why third:</strong> Not because accountants matter less — but because their learning path is genuinely shorter. A focused 4-module track covers what they need in v1. Going deeper is a v2 decision, made with real usage data.
         </div>
       </div>
     </div>
@@ -898,7 +997,7 @@
     <div class="tag-note">
       <div class="tag-note-icon">🏷️</div>
       <p>
-        Every course carries a role tag so learners immediately see what's built for them. Tags appear as colored pills in the catalog and power the browse filter — a learner should never have to guess whether content applies to their job.
+        Every course is tagged by role, so learners see immediately what's relevant to them. Nobody should have to read a course description and wonder "is this for me?" — the tag answers that before they even click.
         <br>
         <div class="tag-pills">
           <span class="pill analyst">Analyst</span>
@@ -915,12 +1014,12 @@
     <div class="section-heading">
       <div class="section-label">Section 02</div>
       <h2>Learning tracks</h2>
-      <p class="section-intro">Five tracks, sequenced by priority. Each module follows the same repeatable format: a 4–5 min concept video → Walnut-powered hands-on demo → short quiz → certification exam at track close.</p>
+      <p class="section-intro">Five tracks, built in the order that makes sense for real teams — not in the order that's easiest to produce. Each one follows the same module format throughout, which matters more than it sounds.</p>
     </div>
 
     <div class="tracks-intro">
-      <span>📋</span>
-      <span>Consistent module structure reduces learner cognitive load and production overhead. Learners know what to expect; the team knows what to build. The Walnut interactive demos are non-negotiable for procedural workflows — you cannot build confidence in data cleaning by watching alone.</span>
+      <span>💡</span>
+      <span>One thing I've learned from building learning content: when every module has the same shape — short video, then a hands-on demo, then a quick check — learners stop wondering what comes next and just learn. The Walnut interactive demos are especially important here. You genuinely cannot build confidence in data cleaning by watching a video. You have to do it yourself, even if it's a simulated environment.</span>
     </div>
 
     <!-- Track 01 -->
@@ -940,7 +1039,7 @@
           <div class="module-tile"><div class="module-num">M5</div><div class="module-name">Certification exam</div><div class="module-meta">10 questions · Foundations badge</div></div>
         </div>
         <div class="track-rationale">
-          <strong>Why first:</strong> The mandatory on-ramp. Every user hits this regardless of role — it establishes a shared mental model before tracks diverge. Keeping it short (under 25 min total) respects time and reduces drop-off at the hardest moment: the very beginning.
+          <strong>Why first:</strong> Everyone lands here regardless of role. It's the one track where I'd resist the urge to make it comprehensive — the goal is just to give every user a shared mental model before they branch off into their own path. Under 25 minutes total. If it takes longer, it's too long.
         </div>
         <div class="format-strip">
           <div class="format-chip">▶ 4–5 min video per module</div>
@@ -969,7 +1068,7 @@
           <div class="module-tile"><div class="module-num">M6</div><div class="module-name">Certification exam</div><div class="module-meta">15 questions · Analyst Core badge</div></div>
         </div>
         <div class="track-rationale">
-          <strong>Why second:</strong> The highest-value learning surface. Analysts represent the deepest engagement with the product — this track is where competence translates directly to retention and expansion. Each module mirrors a real workflow scenario, not a feature list. Walnut demos here are non-negotiable.
+          <strong>Why second:</strong> This is the heart of the whole Academy. Analysts spend more time inside Savant than anyone else, and if they hit a wall here — if they can't figure out a transformation or don't know why their output looks wrong — they stop using the product. Each module is built around a real scenario, not a feature. I'd spend the most production time here.
         </div>
         <div class="format-strip">
           <div class="format-chip">▶ 5 min concept video</div>
@@ -998,7 +1097,7 @@
           <div class="module-tile"><div class="module-num">M6</div><div class="module-name">Certification exam</div><div class="module-meta">12 questions · Admin Essentials badge</div></div>
         </div>
         <div class="track-rationale">
-          <strong>Design choice:</strong> Admin content is precision-first, not depth-first. A confused admin blocks an entire team, so these modules target the critical path only: get connected, get secure, get out of the way. Format leans on step-by-step Walnut demos since configuration tasks are procedural — video alone is insufficient.
+          <strong>Design choice:</strong> I kept this track short and very task-focused on purpose. Admins aren't trying to master the platform — they're trying to get the team set up and stay out of the way. Every module here answers a specific "how do I actually do this?" question. Walnut demos work especially well for setup flows because the steps need to be followed in order.
         </div>
         <div class="format-strip">
           <div class="format-chip">▶ 4–5 min video</div>
@@ -1026,7 +1125,7 @@
           <div class="module-tile"><div class="module-num">M5</div><div class="module-name">Certification exam</div><div class="module-meta">10 questions · Accountant badge</div></div>
         </div>
         <div class="track-rationale">
-          <strong>Design choice:</strong> Accountants have the narrowest feature surface but the highest accuracy anxiety. This track is about building trust, not teaching configuration. Tone is practical and close-process-oriented. Shorter track length reflects the narrower scope — not lower importance.
+          <strong>Design choice:</strong> The tone here is different from every other track. Accountants aren't being trained on a tool — they're being asked to trust numbers they didn't produce themselves. That's a different kind of learning. Everything in this track is about building that trust through familiarity, not through depth of feature knowledge.
         </div>
         <div class="format-strip">
           <div class="format-chip">▶ 4–5 min video</div>
@@ -1055,7 +1154,7 @@
           <div class="module-tile"><div class="module-num">M6</div><div class="module-name">Certification exam</div><div class="module-meta">15 questions · Savant Expert badge</div></div>
         </div>
         <div class="track-rationale">
-          <strong>Why last:</strong> This track exists to retain and deepen analysts who've completed Core. The real-world scenario module is deliberately concrete — not a feature tour. A learner who finishes this becomes a natural internal champion who pulls in colleagues.
+          <strong>Why last:</strong> This track is for analysts who've already built the basics and want to go further. The month-end close scenario at the end is the most important module in the whole Academy — it's where everything comes together in a context people actually recognize from their own work. Someone who finishes this track becomes the person who teaches their colleagues.
         </div>
         <div class="format-strip">
           <div class="format-chip">▶ 5 min video</div>
@@ -1071,8 +1170,8 @@
   <div class="tab-panel" id="tab-exclusions">
     <div class="section-heading">
       <div class="section-label">Section 03</div>
-      <h2>What's explicitly out of v1</h2>
-      <p class="section-intro">Building everything at once is not an option. The prioritization reasoning is as important as what's included. Every exclusion below is a deliberate call, not an oversight.</p>
+      <h2>What's not in v1</h2>
+      <p class="section-intro">Every proposal should be honest about what it's leaving out and why. These aren't gaps — they're deliberate decisions. Trying to build all of this at once would mean doing none of it well.</p>
     </div>
 
     <div class="out-grid">
@@ -1081,48 +1180,48 @@
           <div class="out-x">✕</div>
           <div class="out-title">Developer / API track</div>
         </div>
-        <p class="out-reason">A developer building on Savant's API is a different buyer motion from an internal finance team. v1 serves adoption, not integration. This content likely serves a tiny v1 user segment — defer to v2 when there's actual signal.</p>
+        <p class="out-reason">A developer integrating with Savant's API has completely different needs from a finance team learning to use the product day-to-day. Mixing those audiences in v1 splits focus and probably serves a very small user segment. I'd revisit this once there's actual usage data showing it's needed.</p>
       </div>
       <div class="out-card">
         <div class="out-card-header">
           <div class="out-x">✕</div>
           <div class="out-title">Live webinars and cohort learning</div>
         </div>
-        <p class="out-reason">Synchronous formats require scheduling overhead, hosting infrastructure, and facilitator time. Async-first scales to any account size and timezone without coordination. Build the library first; layer live sessions in v2 where the format earns its cost.</p>
+        <p class="out-reason">Scheduling live sessions sounds appealing but it quietly doubles the workload — you're running content production and event logistics at the same time. Async content scales to any team size and timezone, gets watched at 11pm before a close, and doesn't fall apart when one person cancels. Build the library first.</p>
       </div>
       <div class="out-card">
         <div class="out-card-header">
           <div class="out-x">✕</div>
           <div class="out-title">Community forum integration</div>
         </div>
-        <p class="out-reason">Savant already has a community hub (Circle.so bootcamp). The Academy in v1 links out to it — it does not replicate or replace it. Building a second community surface splits engagement and creates maintenance overhead.</p>
+        <p class="out-reason">Savant already has a great community on Circle.so. The Academy should link to it, not try to replicate it. Creating a second place for community discussion splits the conversation and means maintaining two spaces instead of one.</p>
       </div>
       <div class="out-card">
         <div class="out-card-header">
           <div class="out-x">✕</div>
           <div class="out-title">Custom learning paths per account</div>
         </div>
-        <p class="out-reason">Account-level customization requires LMS admin tooling, CS coordination, and configuration complexity. Role-based tags accomplish 80% of the personalization value with zero overhead. Custom paths are a v2 enterprise feature.</p>
+        <p class="out-reason">This is genuinely useful — but it requires LMS admin tooling, coordination with CS, and configuration time that's hard to justify before we know what patterns actually emerge from real usage. Role tags give learners most of the personalisation they need without any of the overhead.</p>
       </div>
       <div class="out-card">
         <div class="out-card-header">
           <div class="out-x">✕</div>
-          <div class="out-title">Localization (non-English content)</div>
+          <div class="out-title">Localization</div>
         </div>
-        <p class="out-reason">Translating video, quizzes, and Walnut demos is expensive and delays launch significantly. English fluency and content quality comes first. Localization decisions should be data-driven — identify which regions actually need it before investing.</p>
+        <p class="out-reason">Translating video content, Walnut demos, and quiz questions into multiple languages is a significant investment, and it shouldn't be driven by assumption. Get the English content right first. Then look at which regions are actually using the Academy before making localisation decisions.</p>
       </div>
       <div class="out-card">
         <div class="out-card-header">
           <div class="out-x">✕</div>
-          <div class="out-title">In-app learning nudges / product tours</div>
+          <div class="out-title">In-app learning nudges</div>
         </div>
-        <p class="out-reason">In-product guidance is a product design function, not an Academy function. Conflating them creates unclear ownership. The Academy is the structured learning destination; the product can contextually link to it without the Academy owning in-app UX.</p>
+        <p class="out-reason">In-product tooltips and coach marks are a product design responsibility, not a content one. If the Academy tries to own that layer too, it creates unclear ownership between the content team and the product team. The Academy is where you go to learn — the product can link to it, but the boundary should stay clear.</p>
       </div>
     </div>
 
     <div class="v2-note">
       <div class="v2-note-icon">→</div>
-      <p>All six exclusions above are v2 candidates — but only if usage data and customer signal justify them. The developer track gets reconsidered first if accounts show integration-led adoption. Live sessions get added once drop-off analysis shows where async content isn't sufficient.</p>
+      <p>None of these are permanently off the table. They're just not the right first move. I'd revisit the developer track first if we start seeing integration-led accounts. Live sessions would make sense once we have drop-off data showing where async content alone isn't enough.</p>
     </div>
   </div>
 
@@ -1130,8 +1229,8 @@
   <div class="tab-panel" id="tab-measurement">
     <div class="section-heading">
       <div class="section-label">Section 04</div>
-      <h2>Measuring success</h2>
-      <p class="section-intro">Four metric categories. The content quality metrics matter to the education team. The product adoption and business signal metrics are what move CS, Sales, and the exec team — bring both into a shared dashboard from day one.</p>
+      <h2>How I'd measure success</h2>
+      <p class="section-intro">There are two kinds of metrics here. The ones that tell me whether the content is working — and the ones that tell the rest of the business whether the Academy is worth the investment. Both matter, but they matter to different people, and I'd track both from day one.</p>
     </div>
 
     <div class="metrics-grid">
@@ -1190,7 +1289,7 @@
 
     <div class="platform-box">
       <div class="platform-box-icon">🔧</div>
-      <p>Built on <strong>MapleLMS</strong> (or equivalent), all four metric categories are reportable natively. The critical instrumentation step: connect LMS completion data to product analytics via user email or ID. This unlocks the adoption-impact metrics — the ones that actually move stakeholders beyond the education team. Set up the shared dashboard before launch, not after.</p>
+      <p>On <strong>MapleLMS</strong>, all four of these metric categories are reportable natively — no custom instrumentation needed for most of them. The one thing I'd prioritise setting up early is a link between LMS completion data and product analytics (matched by user email or ID). Without that connection, you're measuring clicks inside the Academy but blind to whether any of it is changing behaviour inside Savant. That's the metric that moves the conversation with Sales and CS.</p>
     </div>
   </div>
 
@@ -1198,8 +1297,8 @@
   <div class="tab-panel" id="tab-roadmap">
     <div class="section-heading">
       <div class="section-label">Section 05</div>
-      <h2>Build sequence & roadmap</h2>
-      <p class="section-intro">A 14-week build to full v1 launch, with a clear boundary between what ships and what waits for data before it gets prioritized.</p>
+      <h2>How I'd build it</h2>
+      <p class="section-intro">Fourteen weeks from kickoff to full v1 launch. The sequence below isn't arbitrary — it's designed so that something useful goes live early, and each phase builds on real signal from the one before it.</p>
     </div>
 
     <div class="roadmap-phases">
@@ -1249,11 +1348,10 @@
       </div>
     </div>
 
-    <!-- Before vs After -->
     <div class="section-heading" style="margin-top: 2.5rem;">
       <div class="section-label">Context</div>
-      <h2>Before & after</h2>
-      <p class="section-intro">How the Academy compares to what exists today in the Savant Bootcamp community hub.</p>
+      <h2>What exists today vs. what this builds</h2>
+      <p class="section-intro">The existing Savant Bootcamp on Circle.so is a good starting point — it shows the team already values education. The Academy isn't a replacement; it's what the bootcamp grows into once it has structure, sequencing, and a way to measure whether it's working.</p>
     </div>
 
     <div class="comparison-row">
@@ -1261,22 +1359,22 @@
         <div class="compare-title">Current Bootcamp (Circle.so)</div>
         <ul class="compare-list">
           <li><span class="icon">·</span>Community-hosted, discussion-board format</li>
-          <li><span class="icon">·</span>Hands-on lessons in an unstructured feed</li>
-          <li><span class="icon">·</span>No role-based filtering or tagging</li>
-          <li><span class="icon">·</span>No formal certification or badges</li>
-          <li><span class="icon">·</span>No completion tracking or analytics</li>
-          <li><span class="icon">·</span>No sequential learning path</li>
+          <li><span class="icon">·</span>Good hands-on lessons, but no clear sequence</li>
+          <li><span class="icon">·</span>No role-based filtering — everything in one feed</li>
+          <li><span class="icon">·</span>No certification or formal completion tracking</li>
+          <li><span class="icon">·</span>No way to measure whether it's actually working</li>
+          <li><span class="icon">·</span>No defined path from beginner to confident user</li>
         </ul>
       </div>
       <div class="compare-card">
         <div class="compare-title">Analytics Academy v1</div>
         <ul class="compare-list">
           <li><span class="icon">·</span>Structured LMS with 5 role-specific tracks</li>
-          <li><span class="icon">·</span>Video + Walnut demo + quiz per module</li>
-          <li><span class="icon">·</span>Role tags on every course (Analyst / Admin / Accountant / Dev)</li>
+          <li><span class="icon">·</span>Every module: video + Walnut demo + quiz</li>
+          <li><span class="icon">·</span>Role tags on every course so learners self-select</li>
           <li><span class="icon">·</span>Certification exams and shareable badges</li>
-          <li><span class="icon">·</span>Full completion and engagement analytics</li>
-          <li><span class="icon">·</span>Clear prerequisite sequencing per role</li>
+          <li><span class="icon">·</span>Completion and engagement analytics from day one</li>
+          <li><span class="icon">·</span>A clear path from "just signed up" to "Savant Expert"</li>
         </ul>
       </div>
     </div>
